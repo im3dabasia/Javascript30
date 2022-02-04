@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding:0;
+    font-family: 'Ubuntu', sans-serif;;
+}
+
+body{
+    background-image: url("/Drum\ Kit/images/people.jpg") ;
+    font-size: 10px;
+    background-size: cover;
+
+}
+
+.keys {
+    display: flex;
+    min-height: 100vh;
+    min-width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.key{
+    border:5px solid black;
+    padding:5px;
+    padding-bottom: 1rem;
+    margin:3px;
+    text-align: center;
+    width:100px;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    transition: .1s;
+}
+
+.sound{
+    color: rgb(255,215,0);
+    font-size: 1.2rem;
+}
+
+kbd{
+    font-size: 50px;
+    display:  block;
+}
+.playing{
+    border:5px solid rgb(255,215,0);
+    transform: scale(1.2);
+    box-shadow: 0 0 1rem #ffc600;
+
+}
