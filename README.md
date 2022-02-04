@@ -1,4 +1,4 @@
-**# Javascript30**
+# Javascript30
 > Practiced by Eshaan Dabasiya
 
 ## :notes: DrumKit Instrument :drum: 
