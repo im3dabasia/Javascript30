@@ -1,6 +1,6 @@
 
 body {
-    background: url(/Digital\ Clock/images/img-background.png);
+    background: url('images\img-background.png');
     background-size: cover;
     display: flex;
     min-height: 95vh;
