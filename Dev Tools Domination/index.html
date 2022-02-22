@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p class="tester" onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log("Hello World!")
+
+    // Interpolated
+    // old method
+    console.log("Hello World! %s What are you doing?", "🌎");
+
+    // now ES6 allows us to do it like this
+    var emoji = '   ';
+    console.log(`Hello World ${emoji} What are you doing?`);
+
+
+    // Styled
+    console.log(`%c Hello World What are you doing?`,'font-size:40px ; color:red ; ');
+
+
+    // warning!
+    console.warn("This is a warning");
+
+    // Error
+    console.error("Massive Error");
+
+
+    // Info
+    console.info("Make sure to add a semi colon");
+
+
+    // Testing
+    // only asserts when the line of code is wrong
+    console.assert( 1 === 2 , 'You commited a mistake!')
+
+    // clearing
+    // clears the console
+    console.clear();
+
+    // Viewing DOM Elements
+    // shows the paragraph element itself
+    // console.log(p);
+
+    // shows the methods and all the attributes associated with a particular element that is passed as a paramenter
+    // console.dir(p);
+
+    // Grouping together
+    // we have .group and .groupCollapsed.  the later works more better and is pleasing to the eye
+    dogs.forEach(dog => {
+        console.groupCollapsed(`${dog.name}`)
+        console.log(`My name is ${dog.name}`);
+        console.log(`My age is ${dog.age} years`);
+        console.log(`My age interms of dog years is ${dog.age * 7}`);
+
+        console.groupEnd(`${dog.name}`)
+    })
+
+
+
+    // counting
+    console.count('hello');
+    console.count('hello');
+    console.count('hello');
+    // so this basically counts the number of times hello is printed in the console
+
+    // timing
+    console.time('Fetching weather');
+    fetch('https://v2.jokeapi.dev/joke/Programming')
+        .then(data => data.json())
+        .then(data =>{
+            console.timeEnd('Fetching weather');
+            console.log(data.joke);
+            
+            });
+
+
+  </script>
+</body>
+</html>
