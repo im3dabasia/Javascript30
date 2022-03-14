@@ -9,19 +9,30 @@
 <body>
     <canvas id="draw" width="800" height="800"></canvas>
     <script>
+
+        //here we are calling the canvas initialized in the window document
         const canvas = document.querySelector('#draw');
+
+        // initializing a 2d paper on the canvas object
         const ctx = canvas.getContext('2d');
 
+
+        // setting the width and height of the canvas to be the static widht and height of the canvas before reload of the page
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+
+        // initializing the ctx styles
+        // this is the default strokestyle im going to use the same 
         ctx.strokeStyle = '#BADASS';
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
 
         let isDrawing = false;
+        // initial x and y positions
         let lastX = 0;
         let lastY = 0;
+        // initial hue is set to 0 
         let hue = 0;
         let direction = true;
 
@@ -31,14 +42,17 @@
             ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
             ctx.beginPath();
 
-            // starting  from
+            // starting  from each time we will start from here it can be any position in the canvas plane
             ctx.moveTo(lastX, lastY);
             // going  to
+            // we are getting this values from the event we are listening to. we can also use 
             ctx.lineTo(e.offsetX, e.offsetY);
             ctx.stroke();
-            [lastX, lastY] = [e.offsetX, e.offsetY];
+            [lastX, lastY] = [e.clientX, e.clientY];
 
             hue++;
+
+            // set to zero if hue goes past 360 because max value of hue can be 360
             if (hue >= 360) {
                 hue = 0;
             }
@@ -56,11 +70,12 @@
 
         canvas.addEventListener('mousedown', (e) => {
             isDrawing = true;
+            // very important to set x and y positions depending on their last locations 
             [lastX, lastY] = [e.offsetX, e.offsetY];
         });
 
-        canvas.addEventListener('mousemove', draw);
         canvas.addEventListener('mousedown', () => isDrawing = true);
+        canvas.addEventListener('mousemove', draw);
         canvas.addEventListener('mouseup', () => isDrawing = false);
         canvas.addEventListener('mouseout', () => isDrawng = false);
 

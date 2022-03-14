@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+</head>
+<body class="bod">
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+
+<style>
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after { 
+    box-sizing: inherit; 
+  }
+
+  div {
+    width: 100%;
+    padding: 100px;
+  }
+
+  .one {
+    background: thistle;
+  }
+
+  .two {
+    background: mistyrose;
+  }
+
+  .three {
+    background: coral;
+  }
+</style>
+
+<button></button>
+<script>
+const divs = document.querySelectorAll("div");
+
+
+
+function logText(e){
+    console.log(this.classList.value);
+    // console.log(this)
+
+    // propagation helps in getting only one element and thereafter not inferring to its shadow/bottom elements
+    e.stopPropagation() 
+}
+
+
+divs.forEach(element => {
+    element.addEventListener("click", logText,{
+        capture:true,
+        once:true   
+        // default value of capture is false. if we change it to true we get elements in reverse order kind of like top bottom approach
+    });
+    
+});
+
+document.body.addEventListener("click",logText,{
+        capture:true,
+        once:true   
+        // when once is true all events will be fired max one time in the box it is in  
+    });
+    
+
+</script>
+</body>
+</html>
